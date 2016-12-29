@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package //todo: broken
+package net.tjacobhi.samebird;
 
 import java.awt.*;
 import java.awt.event.*;
