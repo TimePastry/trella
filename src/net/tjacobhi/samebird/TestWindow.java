@@ -12,6 +12,8 @@ import java.awt.geom.Line2D;
  * https://docs.oracle.com/javase/tutorial/2d/index.html
  *
  * This will allow us to create a window with 2d graphics
+ * Right now this class is a playground in order to test how to draw with Swing, later, we will create a more
+ * refined class that will allow us to do specific things
  */
 public class TestWindow extends JFrame {
 
