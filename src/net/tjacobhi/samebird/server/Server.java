@@ -1,9 +1,15 @@
 package net.tjacobhi.samebird.server;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 /**
  * Created by Sean on 12/29/2016.
  *
- * multi-threaded server program to support Samebird gameplay
+ * multi-threaded server program to support Samebird game play
  *
  * has three tasks:
  * 1. to manage and update the game state
@@ -22,5 +28,21 @@ public class Server {
         
         GameUpdater gameUpdater = new GameUpdater("Game Updater");
         gameUpdater.start();
+        
+        Console console = new Console("Console");
+        console.start();
+        
+        while (gameUpdater.getThread().isAlive()){
+            try{
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                String command;
+                while ((command = reader.readLine()) != null){
+                    console.executeCommand(command);
+                }
+            } catch(IOException e){
+                System.out.println("IOException on reading command");
+            }
+        }
+        console.getThread().interrupt();
     }
 }

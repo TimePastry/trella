@@ -40,10 +40,14 @@ public class GameUpdater implements Runnable {
     }
     
     void start(){
-        System.out.println("Game updater starting");
+        System.out.println("Starting thread " + mThreadName);
         if (mThread == null){
             mThread = new Thread(this, "Game Updater");
             mThread.start();
         }
+    }
+    
+    public Thread getThread() {
+        return mThread;
     }
 }
