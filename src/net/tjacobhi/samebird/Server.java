@@ -15,7 +15,12 @@ public class Server {
     // to check to make sure that the server and the client versions are compatible
     private static final String mVersionNumber = "0.0.1";
     
+    //private static GameUpdater mGameUpdater;
+    
     public static void main(String[] args){
         System.out.println("Welcome to the Samebird server program version " + mVersionNumber);
+        
+        GameUpdater gameUpdater = new GameUpdater("Game Updater");
+        gameUpdater.start();
     }
 }
