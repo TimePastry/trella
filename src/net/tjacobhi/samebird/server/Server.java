@@ -4,7 +4,6 @@ package net.tjacobhi.samebird.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 
 /**
  * Created by Sean on 12/29/2016.
@@ -33,15 +32,7 @@ public class Server {
         console.start();
         
         while (gameUpdater.getThread().isAlive()){
-            try{
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                String command;
-                while ((command = reader.readLine()) != null){
-                    console.executeCommand(command);
-                }
-            } catch(IOException e){
-                System.out.println("IOException on reading command");
-            }
+            
         }
         console.getThread().interrupt();
     }

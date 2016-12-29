@@ -1,5 +1,9 @@
 package net.tjacobhi.samebird.server;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * Created by Sean on 12/29/2016.
  *
@@ -9,7 +13,7 @@ public class Console implements Runnable {
     private Thread mThread;
     private String mThreadName;
     
-    public Thread getThread() {
+    Thread getThread() {
         return mThread;
     }
     
@@ -21,9 +25,18 @@ public class Console implements Runnable {
     @Override
     public void run() {
         System.out.println("Running thread " + mThreadName);
+		try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			String command;
+			while ((command = reader.readLine()) != null){
+				executeCommand(command);
+			}
+		} catch(IOException e){
+			System.out.println("IOException on reading command");
+		}
     }
     
-    public void start(){
+    void start(){
         System.out.println("Starting thread " + mThreadName);
         if (mThread == null){
             mThread = new Thread(this, "Console");
@@ -31,7 +44,7 @@ public class Console implements Runnable {
         }
     }
     
-    public void executeCommand(String command){
+    void executeCommand(String command){
         System.out.println(command);
     }
 }
