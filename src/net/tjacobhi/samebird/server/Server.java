@@ -1,4 +1,4 @@
-package net.tjacobhi.samebird;
+package net.tjacobhi.samebird.server;
 
 /**
  * Created by Sean on 12/29/2016.
