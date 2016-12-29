@@ -9,13 +9,14 @@ public class GameUpdater implements Runnable {
     private Thread mThread;
     private String mThreadName;
     
-    // runs just under 60 frames per second
+    // runs just over 60 frames per second if my math is right
+    // my math is probably not right
     private final int mFPS = 17;
     
     // for testing, one update per second
     private final int mTestFPS = 1000;
     
-    public GameUpdater(String threadName){
+    GameUpdater(String threadName){
         mThreadName = threadName;
         System.out.println("Creating thread " + mThreadName);
     }
@@ -27,7 +28,7 @@ public class GameUpdater implements Runnable {
         try{
             int i = 0;
             // todo create a check to see if the game is over
-            while (i < 100) {
+            while (i < 60) {
                 System.out.println(i);
                 i++;
                 Thread.sleep(mTestFPS);
@@ -38,7 +39,7 @@ public class GameUpdater implements Runnable {
         System.out.println("Game updater exiting");
     }
     
-    public void start(){
+    void start(){
         System.out.println("Game updater starting");
         if (mThread == null){
             mThread = new Thread(this, "Game Updater");
