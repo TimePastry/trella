@@ -2,6 +2,7 @@ package net.tjacobhi.samebird.game_objects;
 
 import net.tjacobhi.samebird.Drawable;
 import net.tjacobhi.samebird.Updatable;
+import org.jetbrains.annotations.Contract;
 
 import java.awt.*;
 
@@ -17,12 +18,13 @@ public class Player implements Drawable, Updatable
     private int mId;    // This will keep track of which player is which (specifically for now what color to draw them)
                         // Later, we may decide to allow players to pick there own color, but for now it is assigned.
                         // todo: have server assign id
-    private Point mPosition; // Keeps track of the position
+    private Point.Double mPosition; // Keeps track of the position
 
     public Player()
     {
         assignId();
         assignColor();
+        setPosition(new Point.Double(0, 0));
     }
 
     /**
@@ -47,6 +49,23 @@ public class Player implements Drawable, Updatable
     public void update(double elapsedGameTime)
     {
 
+    }
+
+    @Contract(" -> !null") // we will never give a null point (Remove if we need to give a null position)
+    public final Point.Double getPosition()
+    {
+        return new Point.Double(mPosition.x, mPosition.y);
+        // This ensures that the return value cannot change the values in position after it is returned
+    }
+
+    public void setPosition(Point.Double position)
+    {
+        mPosition = position;
+    }
+
+    public final int getId()
+    {
+        return mId; // Because int is a primitive value, we can be certain that mId will not be changed outside class
     }
 
     private static int nextId = 1;
