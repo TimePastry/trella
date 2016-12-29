@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.tjacobhi.samebird;
+package net.tjacobhi.samebird.client;
 
 import java.awt.*;
 import java.awt.event.*;
