@@ -5,7 +5,8 @@ package net.tjacobhi.samebird.Utilities;
  *
  * contains utility constants
  */
-public class Utilites {
+public class Utilities
+{
 	public static final int PORT = 25560;
 	public static final String HOSTNAME = "127.0.0.1";
 }

@@ -1,7 +1,7 @@
 package net.tjacobhi.samebird.client;
 
 import net.tjacobhi.samebird.TestWindow;
-import net.tjacobhi.samebird.Utilities.Utilites;
+import net.tjacobhi.samebird.Utilities.Utilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class Client
         client.mWindow.createWindow();
 	
 		try (
-				Socket socket = new Socket(Utilites.HOSTNAME, Utilites.PORT);
+				Socket socket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));

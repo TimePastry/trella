@@ -1,6 +1,6 @@
 package net.tjacobhi.samebird.server;
 
-import net.tjacobhi.samebird.Utilities.Utilites;
+import net.tjacobhi.samebird.Utilities.Utilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class Server implements Runnable{
 	@Override
 	public void run() {
 		try(
-				ServerSocket serversocket = new ServerSocket(Utilites.PORT);
+				ServerSocket serversocket = new ServerSocket(Utilities.PORT);
 				Socket clientsocket = serversocket.accept();
 				PrintWriter out = new PrintWriter(clientsocket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(clientsocket.getInputStream()));
