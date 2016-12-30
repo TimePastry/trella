@@ -7,4 +7,5 @@ package net.tjacobhi.samebird.Utilities;
  */
 public class Utilites {
 	public static final int PORT = 25560;
+	public static final String HOSTNAME = "127.0.0.1";
 }
