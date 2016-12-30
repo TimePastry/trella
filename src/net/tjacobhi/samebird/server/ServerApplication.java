@@ -21,6 +21,9 @@ public class ServerApplication {
     public static void main(String[] args){
         System.out.println("Welcome to the Samebird server program version " + mVersionNumber);
         
+        Server server = new Server();
+        server.start();
+        
         GameUpdater gameUpdater = new GameUpdater("Game Updater");
         gameUpdater.start();
         
