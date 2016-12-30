@@ -5,11 +5,12 @@ import net.tjacobhi.samebird.Updatable;
 import org.jetbrains.annotations.Contract;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Created by tjacobhi on 29-Dec-16.
  */
-public class Player implements Drawable, Updatable
+public class Player implements Drawable, Updatable, Serializable
 {
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
@@ -96,4 +97,6 @@ public class Player implements Drawable, Updatable
                 mPlayerColor = new Color(0x555566);
         }
     }
+
+    private static long serialVersionUID = 0x506c61796572L;
 }
