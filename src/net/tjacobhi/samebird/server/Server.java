@@ -18,6 +18,7 @@ import java.util.concurrent.Semaphore;
 public class Server implements Runnable{
 	private Thread mThread;
 	private Semaphore mGameStarted;
+	private ServerSocket mServerSocket;
 	
 	Server(Semaphore gameStarted){
 		mGameStarted = gameStarted;
@@ -25,20 +26,34 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run() {
-		try(
-				ServerSocket serversocket = new ServerSocket(Utilities.PORT);
-				Socket clientsocket = serversocket.accept();
+		if (mServerSocket == null) {
+			try {
+				mServerSocket = new ServerSocket(Utilities.PORT);
+			} catch (IOException e){
+				System.out.println("ServerSocket failed");
+			}
+		}
+		
+		try (
+				Socket clientsocket = mServerSocket.accept();
 				PrintWriter out = new PrintWriter(clientsocket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(clientsocket.getInputStream()));
-				)
-		{
+		) {
 			System.out.println(in.readLine());
-			executeClientCommand(in.readLine());
-			
-		}catch (IOException e){
-			System.out.println("IOException! Stop breaking things!");
+			try {
+				executeClientCommand(in.readLine());
+			} catch (IOException e){
+				System.out.println("Client Disconnected");
+			}
+		} catch (IOException e) {
+			System.out.println("Client Disconnected?");
 		}
-				
+		
+		try {
+			mServerSocket.close();
+		} catch (IOException e){
+			System.out.println("ServerSocket close failed");
+		}
 	}
 	
 	void start(){
