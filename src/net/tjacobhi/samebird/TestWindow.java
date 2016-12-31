@@ -1,5 +1,6 @@
 package net.tjacobhi.samebird;
 
+import net.tjacobhi.samebird.Utilities.Utilities;
 import net.tjacobhi.samebird.client.Client;
 
 import javax.swing.*;
@@ -91,8 +92,8 @@ public class TestWindow extends JPanel implements ActionListener
 			case "GAME_START":
 				Client.windowEvent(e);
 				remove(mTestButton);
+				repaint();
 				break;
-
 		}
 	}
 }
