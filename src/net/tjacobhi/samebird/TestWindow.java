@@ -1,6 +1,5 @@
 package net.tjacobhi.samebird;
 
-import net.tjacobhi.samebird.Utilities.Utilities;
 import net.tjacobhi.samebird.client.Client;
 
 import javax.swing.*;
@@ -28,7 +27,9 @@ public class TestWindow extends JPanel implements ActionListener
         mTestButton = new JButton("Start Game");
 	    mTestButton.setActionCommand("GAME_START");
 	    mTestButton.addActionListener(this);
+	    mTestButton.setBounds(10, 10, 170, 30);
         this.add(mTestButton);
+        setLayout(null);
     }
 
     public TestWindow(Client client)
@@ -45,7 +46,6 @@ public class TestWindow extends JPanel implements ActionListener
         //Create and set up the window.
         JFrame frame = new JFrame("Test Window");
 	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 
         frame.setMaximumSize(new Dimension(800, 600));
         frame.setMinimumSize(new Dimension(800, 600));

@@ -18,7 +18,7 @@ public class Player implements Drawable, Updatable, Serializable
     private Color mPlayerColor;
     private int mId;    // This will keep track of which player is which (specifically for now what color to draw them)
                         // Later, we may decide to allow players to pick there own color, but for now it is assigned.
-                        // todo: have server assign id
+                        // todo: have server assign id, this will use java.util.UUID.
     private Point.Double mPosition; // Keeps track of the position
 
     public Player()

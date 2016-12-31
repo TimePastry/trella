@@ -1,4 +1,4 @@
-package net.tjacobhi.samebird.Utilities;
+package net.tjacobhi.samebird.utilities;
 
 import java.util.Random;
 

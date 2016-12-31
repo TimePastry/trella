@@ -1,6 +1,6 @@
 package net.tjacobhi.samebird.client;
 
-import net.tjacobhi.samebird.Utilities.Utilities;
+import net.tjacobhi.samebird.utilities.Utilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
