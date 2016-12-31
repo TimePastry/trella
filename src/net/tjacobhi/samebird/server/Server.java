@@ -22,6 +22,7 @@ public class Server implements Runnable{
 	private ServerSocket mServerSocket;
 	private ArrayList<Socket> mClients;
 	private ArrayList<PrintWriter> mClientOuts;
+	private ArrayList<BufferedReader> mClientIns;
 	
 	public ArrayList<PrintWriter> getClientOuts() {
 		return mClientOuts;
@@ -31,8 +32,6 @@ public class Server implements Runnable{
 	
 		return mClientIns;
 	}
-	
-	private ArrayList<BufferedReader> mClientIns;
 	
 	public ServerSocket getServerSocket() {
 		return mServerSocket;
@@ -57,7 +56,9 @@ public class Server implements Runnable{
 	@Override
 	public void run() {
 		while (ServerApplication.running) {
-			
+			for (int i = 0; i < mClients.size(); i++) {
+				
+			}
 		}
 		try {
 			mServerSocket.close();

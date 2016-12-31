@@ -34,7 +34,7 @@ public class DataReceiver implements Runnable
 		    mSocket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
 			mOut = new PrintWriter(mSocket.getOutputStream(), true);
 			mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
-		    mOut.println("I've connected!");
+		    mOut.println(Utilities.PLAYER_CONNECTED);
 	    }
 	    catch (UnknownHostException e) {
 		    System.err.println("Don't know about host ");
