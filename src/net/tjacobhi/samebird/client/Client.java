@@ -37,9 +37,13 @@ public class Client implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if("GAME_START".equals(e.getActionCommand()))
+		switch (e.getActionCommand())
 		{
-			// todo: call DataReceiver's game start command
+			case "GAME_START":
+				// todo: call DataReceiver's game start command
+				break;
+
 		}
+
 	}
 }
