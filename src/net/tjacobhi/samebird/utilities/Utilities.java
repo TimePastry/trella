@@ -10,7 +10,7 @@ import java.util.Random;
 public class Utilities
 {
 	public static final int PORT = 25560;
-	public static final String HOSTNAME = "samebird.tjacobhi.net";
+	public static final String HOSTNAME = "192.168.1.11";//"samebird.tjacobhi.net";
 	public static final Random rand = new Random();
 	
 	// server codes

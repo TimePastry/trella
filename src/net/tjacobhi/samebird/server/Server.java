@@ -18,6 +18,7 @@ import java.util.concurrent.Semaphore;
 public class Server implements Runnable{
 	private Thread mThread;
 	private Semaphore mGameStarted;
+	static Semaphore clientSemaphore = new Semaphore(1);
 	private ServerSocket mServerSocket;
 	private ArrayList<Socket> mClients;
 	private ArrayList<PrintWriter> mClientOuts;
@@ -49,6 +50,7 @@ public class Server implements Runnable{
 		mClients = new ArrayList<>();
 		mClientIns = new ArrayList<>();
 		mClientOuts = new ArrayList<>();
+		usher.start();
 	}
 	
 	public ArrayList<Socket> getClients() {
@@ -59,15 +61,17 @@ public class Server implements Runnable{
 	public void run() {
 		try {
 			while (ServerApplication.running) {
-				for (int i = 0; i < mClients.size(); i++) {
+				clientSemaphore.acquire();
+				for (int i = 0; i < mClientIns.size(); i++) {
 					if (mClientIns.get(i).ready()) {
 						executeClientCommand(mClientIns.get(i).readLine(), i);
 					}
 				}
+				clientSemaphore.release();
 			}
 		}
-		catch (IOException e){
-			System.err.println("IOException in Server");
+		catch (Exception e){
+			System.err.println("Exception in Server");
 		}
 		try {
 			mServerSocket.close();
