@@ -4,6 +4,8 @@ import net.tjacobhi.samebird.client.Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by tjacobhi on 28-Dec-16.
@@ -14,7 +16,7 @@ import java.awt.*;
  * Right now this class is a playground in order to test how to draw with Swing, later, we will create a more
  * refined class that will allow us to do specific things
  */
-public class TestWindow extends JPanel
+public class TestWindow extends JPanel implements ActionListener
 {
     private JButton mTestButton;
 	private Client mClient;
@@ -22,8 +24,9 @@ public class TestWindow extends JPanel
     public TestWindow()
     {
         super();
-
         mTestButton = new JButton("Start Game");
+	    mTestButton.setActionCommand("GAME_START");
+	    mTestButton.addActionListener(this);
         this.add(mTestButton);
     }
 
@@ -33,7 +36,7 @@ public class TestWindow extends JPanel
     	mClient = client;
     	mTestButton = new JButton("Start Game");
     	mTestButton.setActionCommand("GAME_START");
-    	mTestButton.addActionListener(client);
+    	mTestButton.addActionListener(this);
     	add(mTestButton);
     }
 
@@ -80,4 +83,16 @@ public class TestWindow extends JPanel
 	    g.fillRect(0, 0, 10, 10);
     }
 
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		switch (e.getActionCommand())
+		{
+			case "GAME_START":
+				Client.windowEvent(e);
+				remove(mTestButton);
+				break;
+
+		}
+	}
 }

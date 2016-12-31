@@ -3,7 +3,6 @@ package net.tjacobhi.samebird.client;
 import net.tjacobhi.samebird.TestWindow;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -11,10 +10,12 @@ import java.io.IOException;
  *
  * Client is the starting point for the client-end of same-bird
  */
-public class Client implements ActionListener
+public class Client
 {
     TestWindow mWindow; // I'm creating its window as a member variable.
 	private static DataReceiver mDataReceiver;
+
+	public static Client SINGLETON = new Client();
 
     public Client()
     {
@@ -27,15 +28,14 @@ public class Client implements ActionListener
      */
     public static void main(String[] args) throws IOException
     {
-        Client client = new Client();
-        client.mWindow.createWindow();
+        //Client client = new Client();
+        SINGLETON.mWindow.createWindow();
         
         Client.mDataReceiver = new DataReceiver();
         Client.mDataReceiver.start();
     }
 
-	@Override
-	public void actionPerformed(ActionEvent e)
+	public static void windowEvent(ActionEvent e)
 	{
 		switch (e.getActionCommand())
 		{
@@ -44,6 +44,5 @@ public class Client implements ActionListener
 				break;
 
 		}
-
 	}
 }
