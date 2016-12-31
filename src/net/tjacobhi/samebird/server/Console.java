@@ -15,7 +15,7 @@ public class Console implements Runnable {
 	private Semaphore mGameStarted;
     
     // command strings
-	private static final String GAME_START = "start";
+	static final String GAME_START = "start";
     
     Thread getThread() {
         return mThread;

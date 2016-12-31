@@ -33,7 +33,8 @@ public class Server implements Runnable{
 				)
 		{
 			System.out.println(in.readLine());
-			String clientCommand;
+			executeClientCommand(in.readLine());
+			
 		}catch (IOException e){
 			System.out.println("IOException! Stop breaking things!");
 		}
@@ -44,6 +45,17 @@ public class Server implements Runnable{
 		if (mThread == null){
 			mThread = new Thread(this, "Console");
 			mThread.start();
+		}
+	}
+	
+	private void executeClientCommand(String command){
+		int code = Integer.parseInt(command);
+		switch(code){
+			case Utilities.GAME_START:
+				mGameStarted.release();
+				break;
+			default:
+				System.out.println("Unrecognized command from client");
 		}
 	}
 }

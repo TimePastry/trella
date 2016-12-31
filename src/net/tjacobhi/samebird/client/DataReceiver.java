@@ -17,7 +17,9 @@ public class DataReceiver implements Runnable
     private Thread mThread;
     private String mHostName;
     private int mPort;
-
+    private Socket mSocket;
+	private PrintWriter mOut;
+	private BufferedReader mIn;
 
 
     @Override
@@ -28,13 +30,11 @@ public class DataReceiver implements Runnable
 
     public void connect()
     {
-	    try (
-			    Socket socket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
-			    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			    BufferedReader in = new BufferedReader(
-					    new InputStreamReader(socket.getInputStream()));
-	    ) {
-		    out.println("I've connected!");
+	    try {
+		    mSocket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
+			mOut = new PrintWriter(mSocket.getOutputStream(), true);
+			mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
+		    mOut.println("I've connected!");
 	    }
 	    catch (UnknownHostException e) {
 		    System.err.println("Don't know about host ");
@@ -44,6 +44,22 @@ public class DataReceiver implements Runnable
 		    System.err.println("Couldn't get I/O for the connection to ");
 		    System.exit(1);
 	    }
+    }
+	
+    public void disconnect()
+    {
+    	try {
+    		mIn.close();
+    		mOut.close();
+		    mSocket.close();
+	    } catch (IOException e){
+		    System.err.println("Couldn't get I/O for the connection to server");
+		    System.exit(1);
+	    }
+    }
+    
+    public void startGame(){
+    	mOut.println(Utilities.GAME_START);
     }
 	
 	void start(){
