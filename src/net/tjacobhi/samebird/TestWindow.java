@@ -15,31 +15,36 @@ import java.awt.geom.Line2D;
  * Right now this class is a playground in order to test how to draw with Swing, later, we will create a more
  * refined class that will allow us to do specific things
  */
-public class TestWindow extends JFrame {
+public class TestWindow extends JPanel
+{
+    private JButton mTestButton;
+
 
     public TestWindow()
     {
         super();
+
+        mTestButton = new JButton("Start Game");
+        this.add(mTestButton);
     }
 
-    private  void createAndShowGUI() {
+    private static void createAndShowGUI() {
         //Create and set up the window.
-        //Frame frame = new LineJFrame(); //notice this line was changed to my own created inner class
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("Test Window");
+	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JLabel emptyLabel = new JLabel("");
 
-        //here I was experimenting trying to force window size, doesn't quite work yet, but is getting there
-        emptyLabel.setPreferredSize(new Dimension(800, 600));
-        emptyLabel.setMinimumSize(new Dimension(800, 600));
-        emptyLabel.setMaximumSize(new Dimension(800, 600));
-        this.setMaximumSize(new Dimension(800, 600));
-        this.setMinimumSize(new Dimension(800, 600));
+        frame.setMaximumSize(new Dimension(800, 600));
+        frame.setMinimumSize(new Dimension(800, 600));
 
-        this.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+        TestWindow testWindow = new TestWindow();
+
+        testWindow.setOpaque(true);
+
+        frame.setContentPane(testWindow);
         //Display the window.
-        this.pack();
-        this.setVisible(true);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public void createWindow() {
@@ -63,6 +68,7 @@ public class TestWindow extends JFrame {
         g.drawLine(50, 200, 400, 300); // Draws a line
         g.setColor(new Color(0x21e249));
         g.drawString("Hello, World!", 380, 290); // Draws text
+	    g.fillRect(0, 0, 10, 10);
     }
 
 }
