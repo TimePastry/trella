@@ -55,10 +55,17 @@ public class Server implements Runnable{
 	
 	@Override
 	public void run() {
-		while (ServerApplication.running) {
-			for (int i = 0; i < mClients.size(); i++) {
-				
+		try {
+			while (ServerApplication.running) {
+				for (int i = 0; i < mClients.size(); i++) {
+					if (mClientIns.get(i).ready()) {
+						executeClientCommand(mClientIns.get(i).readLine(), i);
+					}
+				}
 			}
+		}
+		catch (IOException e){
+			System.err.println("IOException in Server");
 		}
 		try {
 			mServerSocket.close();
@@ -74,11 +81,15 @@ public class Server implements Runnable{
 		}
 	}
 	
-	private void executeClientCommand(String command){
+	private void executeClientCommand(String command, int user){
 		int code = Integer.parseInt(command);
 		switch(code){
 			case Utilities.GAME_START:
 				mGameStarted.release();
+				break;
+			case Utilities.PLAYER_CONNECTED:
+				mClientOuts.get(user).println(Utilities.ACCEPT_PLAYER_CONNECTED);
+				System.out.println("Player connected");
 				break;
 			default:
 				System.out.println("Unrecognized command from client");
