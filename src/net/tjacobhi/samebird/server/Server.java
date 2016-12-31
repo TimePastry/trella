@@ -33,6 +33,7 @@ public class Server implements Runnable{
 				System.out.println("ServerSocket failed");
 			}
 		}
+		
 		try (
 				Socket clientsocket = mServerSocket.accept();
 				PrintWriter out = new PrintWriter(clientsocket.getOutputStream(), true);
@@ -47,6 +48,7 @@ public class Server implements Runnable{
 		} catch (IOException e) {
 			System.out.println("Client Disconnected");
 		}
+		
 		try {
 			mServerSocket.close();
 		} catch (IOException e){
