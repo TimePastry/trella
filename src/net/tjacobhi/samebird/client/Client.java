@@ -18,7 +18,7 @@ public class Client implements ActionListener
 
     public Client()
     {
-        mWindow = new TestWindow();
+        mWindow = new TestWindow(this);
     }
 
     /**
