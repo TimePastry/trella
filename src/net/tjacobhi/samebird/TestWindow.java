@@ -47,8 +47,9 @@ public class TestWindow extends JPanel implements ActionListener
         JFrame frame = new JFrame("Test Window");
 	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        frame.setMaximumSize(new Dimension(800, 600));
-        frame.setMinimumSize(new Dimension(800, 600));
+	    frame.setMinimumSize(new Dimension(800, 600));
+        frame.setSize(800, 600);
+        frame.setResizable(false);
 
         TestWindow testWindow = new TestWindow();
 

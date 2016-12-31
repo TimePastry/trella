@@ -98,5 +98,5 @@ public class Player implements Drawable, Updatable, Serializable
         }
     }
 
-    private static long serialVersionUID = 0x506c61796572L;
+    private static final long serialVersionUID = 0x506c61796572L;
 }
