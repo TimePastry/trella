@@ -40,7 +40,7 @@ public class Client implements ActionListener
 		switch (e.getActionCommand())
 		{
 			case "GAME_START":
-				// todo: call DataReceiver's game start command
+				mDataReceiver.startGame();
 				break;
 
 		}
