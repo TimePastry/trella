@@ -3,6 +3,7 @@ package net.tjacobhi.samebird.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by Sean on 12/29/2016.
@@ -11,20 +12,21 @@ import java.io.InputStreamReader;
  */
 public class Console implements Runnable {
     private Thread mThread;
-    private String mThreadName;
+	private Semaphore mGameStarted;
+    
+    // command strings
+	private static final String GAME_START = "start";
     
     Thread getThread() {
         return mThread;
     }
     
-    Console(String threadName){
-        mThreadName = threadName;
-        System.out.println("Creating thread " + mThreadName);
+    Console(Semaphore gameStarted){
+        mGameStarted = gameStarted;
     }
     
     @Override
     public void run() {
-        System.out.println("Running thread " + mThreadName);
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			String command;
@@ -37,7 +39,6 @@ public class Console implements Runnable {
     }
     
     void start(){
-        System.out.println("Starting thread " + mThreadName);
         if (mThread == null){
             mThread = new Thread(this, "Console");
             mThread.start();
@@ -45,6 +46,11 @@ public class Console implements Runnable {
     }
     
     void executeCommand(String command){
-        System.out.println(command);
+    	if (GAME_START.equals(command)){
+    		mGameStarted.release();
+	    }
+	    else {
+        System.out.println("Unknown command");
+	    }
     }
 }

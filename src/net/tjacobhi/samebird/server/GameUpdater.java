@@ -1,5 +1,7 @@
 package net.tjacobhi.samebird.server;
 
+import java.util.concurrent.Semaphore;
+
 /**
  * Created by Sean on 12/29/2016.
  *
@@ -7,7 +9,7 @@ package net.tjacobhi.samebird.server;
  */
 public class GameUpdater implements Runnable {
     private Thread mThread;
-    private String mThreadName;
+    private Semaphore mGameStarted;
     
     // runs just over 60 frames per second if my math is right
     // my math is probably not right
@@ -16,9 +18,8 @@ public class GameUpdater implements Runnable {
     // for testing, one update per second
     private final int mTestFPS = 1000;
     
-    GameUpdater(String threadName){
-        mThreadName = threadName;
-        System.out.println("Creating thread " + mThreadName);
+    GameUpdater(Semaphore gameStarted){
+        mGameStarted = gameStarted;
     }
     
     
@@ -26,6 +27,9 @@ public class GameUpdater implements Runnable {
     public void run() {
         System.out.println("Updating game");
         try{
+        	// wait for game to start
+        	mGameStarted.acquire();
+        	
             int i = 0;
             // todo create a check to see if the game is over
             while (i < 60) {
@@ -40,7 +44,6 @@ public class GameUpdater implements Runnable {
     }
     
     void start(){
-        System.out.println("Starting thread " + mThreadName);
         if (mThread == null){
             mThread = new Thread(this, "Game Updater");
             mThread.start();

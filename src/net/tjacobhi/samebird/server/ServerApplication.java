@@ -1,6 +1,8 @@
 package net.tjacobhi.samebird.server;
 
 
+import java.util.concurrent.Semaphore;
+
 /**
  * Created by Sean on 12/29/2016.
  *
@@ -15,19 +17,27 @@ public class ServerApplication {
     // version number constant, maybe the client can use this
     // to check to make sure that the server and the client versions are compatible
     private static final String mVersionNumber = "0.0.1";
+    private static final Semaphore mGameStarted = new Semaphore(1);
     
     //private static GameUpdater mGameUpdater;
     
     public static void main(String[] args){
         System.out.println("Welcome to the Samebird server program version " + mVersionNumber);
         
-        Server server = new Server();
+        try {
+	        mGameStarted.acquire();
+        }
+        catch (InterruptedException e) {
+        	System.err.println("The semaphore explodied");
+        }
+        
+        Server server = new Server(mGameStarted);
         server.start();
         
-        GameUpdater gameUpdater = new GameUpdater("Game Updater");
+        GameUpdater gameUpdater = new GameUpdater(mGameStarted);
         gameUpdater.start();
         
-        Console console = new Console("Console");
+        Console console = new Console(mGameStarted);
         console.start();
         
         while (gameUpdater.getThread().isAlive()){

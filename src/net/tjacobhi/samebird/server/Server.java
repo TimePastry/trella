@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by Sean on 12/30/2016.
@@ -16,6 +17,11 @@ import java.net.Socket;
  */
 public class Server implements Runnable{
 	private Thread mThread;
+	private Semaphore mGameStarted;
+	
+	Server(Semaphore gameStarted){
+		mGameStarted = gameStarted;
+	}
 	
 	@Override
 	public void run() {
@@ -27,6 +33,7 @@ public class Server implements Runnable{
 				)
 		{
 			System.out.println(in.readLine());
+			String clientCommand;
 		}catch (IOException e){
 			System.out.println("IOException! Stop breaking things!");
 		}
