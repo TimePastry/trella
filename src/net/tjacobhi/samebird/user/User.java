@@ -5,4 +5,5 @@ package net.tjacobhi.samebird.user;
  */
 public class User
 {
+
 }
