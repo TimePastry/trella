@@ -46,7 +46,7 @@ public class Server implements Runnable{
 				System.out.println("Client Disconnected");
 			}
 		} catch (IOException e) {
-			System.out.println("Client Disconnected");
+			System.out.println("Client Disconnected?");
 		}
 		
 		try {
