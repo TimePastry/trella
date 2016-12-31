@@ -19,7 +19,9 @@ import java.awt.event.ActionListener;
 public class TestWindow extends JPanel implements ActionListener
 {
     private JButton mTestButton;
-	private Client mClient;
+    private JButton mMainMenu_ConnectButton;
+    private JButton mMainMenu_OptionsButton;
+    private JButton mMainMenu_ExitButton;
 
     public TestWindow()
     {
@@ -32,24 +34,14 @@ public class TestWindow extends JPanel implements ActionListener
         setLayout(null);
     }
 
-    public TestWindow(Client client)
-    {
-    	super();
-    	mClient = client;
-    	mTestButton = new JButton("Start Game");
-    	mTestButton.setActionCommand("GAME_START");
-    	mTestButton.addActionListener(this);
-    	add(mTestButton);
-    }
-
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Test Window");
+        JFrame frame = new JFrame("Same-bird");
 	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 	    frame.setMinimumSize(new Dimension(800, 600));
         frame.setSize(800, 600);
-        frame.setResizable(false);
+        frame.setResizable(false); // *facepalm* for whatever reason, I missed this method...
 
         TestWindow testWindow = new TestWindow();
 
@@ -75,14 +67,16 @@ public class TestWindow extends JPanel implements ActionListener
     @Override
     public void paint(Graphics g)
     {
-        super.paint(g); // I added this line to handle repaint issues
-        g.setColor(new Color(0x4488ee)); // This allows us to create a color using hex value
-        g.fillRect(60, 60, 80, 120); // Draws a filled in rectangle
-        g.setColor(Color.red); // This allows us to use color name (very limited)
-        g.drawLine(50, 200, 400, 300); // Draws a line
-        g.setColor(new Color(0x21e249));
-        g.drawString("Hello, World!", 380, 290); // Draws text
-	    g.fillRect(0, 0, 10, 10);
+        super.paint(g);
+        switch (Client.getCurrentState())
+        {
+	        case MAIN_MENU:
+
+	        	break;
+
+	        default:
+	        	// There is an error
+        }
     }
 
 	@Override
