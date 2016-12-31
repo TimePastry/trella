@@ -1,10 +1,9 @@
 package net.tjacobhi.samebird;
 
-import sun.java2d.loops.DrawLine;
+import net.tjacobhi.samebird.client.Client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
 
 /**
  * Created by tjacobhi on 28-Dec-16.
@@ -18,7 +17,7 @@ import java.awt.geom.Line2D;
 public class TestWindow extends JPanel
 {
     private JButton mTestButton;
-
+	private Client mClient;
 
     public TestWindow()
     {
@@ -26,6 +25,16 @@ public class TestWindow extends JPanel
 
         mTestButton = new JButton("Start Game");
         this.add(mTestButton);
+    }
+
+    public TestWindow(Client client)
+    {
+    	super();
+    	mClient = client;
+    	mTestButton = new JButton("Start Game");
+    	mTestButton.setActionCommand("GAME_START");
+    	mTestButton.addActionListener(client);
+    	add(mTestButton);
     }
 
     private static void createAndShowGUI() {
