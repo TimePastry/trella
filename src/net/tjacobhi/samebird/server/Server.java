@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -19,36 +20,45 @@ public class Server implements Runnable{
 	private Thread mThread;
 	private Semaphore mGameStarted;
 	private ServerSocket mServerSocket;
+	private ArrayList<Socket> mClients;
+	private ArrayList<PrintWriter> mClientOuts;
+	
+	public ArrayList<PrintWriter> getClientOuts() {
+		return mClientOuts;
+	}
+	
+	public ArrayList<BufferedReader> getClientIns() {
+	
+		return mClientIns;
+	}
+	
+	private ArrayList<BufferedReader> mClientIns;
+	
+	public ServerSocket getServerSocket() {
+		return mServerSocket;
+	}
 	
 	Server(Semaphore gameStarted){
 		mGameStarted = gameStarted;
+		Usher usher = new Usher(this);
+		if (mServerSocket == null) {
+			try {
+				mServerSocket = new ServerSocket(Utilities.PORT);
+			} catch (IOException e) {
+				System.out.println("ServerSocket failed");
+			}
+		}
+	}
+	
+	public ArrayList<Socket> getClients() {
+		return mClients;
 	}
 	
 	@Override
 	public void run() {
-		if (mServerSocket == null) {
-			try {
-				mServerSocket = new ServerSocket(Utilities.PORT);
-			} catch (IOException e){
-				System.out.println("ServerSocket failed");
-			}
+		while (ServerApplication.running) {
+			
 		}
-		
-		try (
-				Socket clientsocket = mServerSocket.accept();
-				PrintWriter out = new PrintWriter(clientsocket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(clientsocket.getInputStream()));
-		) {
-			System.out.println(in.readLine());
-			try {
-				executeClientCommand(in.readLine());
-			} catch (IOException e){
-				System.out.println("Client Disconnected");
-			}
-		} catch (IOException e) {
-			System.out.println("Client Disconnected?");
-		}
-		
 		try {
 			mServerSocket.close();
 		} catch (IOException e){

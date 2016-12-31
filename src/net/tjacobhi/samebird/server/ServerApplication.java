@@ -18,6 +18,7 @@ public class ServerApplication {
     // to check to make sure that the server and the client versions are compatible
     private static final String mVersionNumber = "0.0.1";
     private static final Semaphore mGameStarted = new Semaphore(1);
+    static boolean running = true;
     
     //private static GameUpdater mGameUpdater;
     
