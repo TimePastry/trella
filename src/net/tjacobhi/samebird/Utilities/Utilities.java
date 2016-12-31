@@ -24,4 +24,10 @@ public class Utilities
 	public static final int ACCEPT_MESSAGE = SEND_MESSAGE << 16;
 	public static final int SEND_USER_INFO = 0x00000010;
 	public static final int ACCEPT_USER_INFO = SEND_USER_INFO << 16;
+	public static final int SEND_USER_SCORE = 0x00000020;
+	public static final int ACCEPT_USER_SCORE = SEND_USER_SCORE << 16;
+	public static final int PLAYER_CONNECTED = 0x00000040;
+	public static final int ACCEPT_PLAYER_CONNECTED = PLAYER_CONNECTED << 16;
+	public static final int PLAYER_DISCONNECTED = 0x00000080;
+	public static final int ACCEPT_PLAYER_DISCONNECTED = PLAYER_DISCONNECTED << 16;
 }
