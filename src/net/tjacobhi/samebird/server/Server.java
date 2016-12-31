@@ -46,6 +46,9 @@ public class Server implements Runnable{
 				System.out.println("ServerSocket failed");
 			}
 		}
+		mClients = new ArrayList<>();
+		mClientIns = new ArrayList<>();
+		mClientOuts = new ArrayList<>();
 	}
 	
 	public ArrayList<Socket> getClients() {
