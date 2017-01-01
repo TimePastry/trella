@@ -1,6 +1,7 @@
 package net.tjacobhi.samebird.client;
 
 import net.tjacobhi.samebird.TestWindow;
+import net.tjacobhi.samebird.client.client_pages.ConnectedScreen;
 import net.tjacobhi.samebird.client.client_pages.MainMenu;
 
 import javax.swing.*;
@@ -17,6 +18,9 @@ public class ClientWindowManager implements ActionListener
 {
 
 	private JFrame mFrame; // keeps track of the window object
+	private JPanel mContentPane;
+	private MainMenu mMainMenu;
+	private ConnectedScreen mConnectedScreen;
 
 	/**
 	 * Creates the initial window
@@ -27,17 +31,23 @@ public class ClientWindowManager implements ActionListener
 		mFrame = new JFrame("Same-bird");
 		mFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+		mContentPane = new JPanel();
+		mContentPane.setLayout(new CardLayout());
+		mMainMenu = new MainMenu();
+		mConnectedScreen = new ConnectedScreen();
+		mContentPane.add(mMainMenu, "MainMenu");
+		mContentPane.add(mConnectedScreen, "ConnectedScreen");
 		mFrame.setMinimumSize(new Dimension(800, 600));
 		mFrame.setSize(800, 600);
 		mFrame.setLocation(50, 50);
 		mFrame.setResizable(false);
 
-		// Start by creating a MainMenu object and assigning it to mFrame.
+		/*// Start by creating a MainMenu object and assigning it to mFrame.
 		MainMenu mainMenu = new MainMenu();
 
 		mainMenu.setOpaque(true);
-
-		mFrame.setContentPane(mainMenu);
+*/
+		mFrame.setContentPane(mContentPane);
 		//Display the window.
 		mFrame.pack();
 		mFrame.setVisible(true);
@@ -52,10 +62,10 @@ public class ClientWindowManager implements ActionListener
 		switch (Client.getCurrentState())
 		{
 			case MAIN_MENU:
-				// todo: implement switching to main menu.
+				((CardLayout)mContentPane.getLayout()).show(mMainMenu, "MainMenu");
 				break;
 			case CONNECTED_SCREEN:
-				// todo: implement switching to the connected screen
+				((CardLayout)mContentPane.getLayout()).show(mContentPane, "ConnectedScreen");
 				break;
 			case LOGIN_SCREEN:
 				// todo: implement switching to the login screen

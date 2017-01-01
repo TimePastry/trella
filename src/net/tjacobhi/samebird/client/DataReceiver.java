@@ -32,6 +32,7 @@ public class DataReceiver implements Runnable
 			// todo: switch client's state to connected, and then switch screens
 			// also, we need to keep track to see if we disconnect at any time,
 			// if we do, we need to force the Client back to the main menu.
+			Client.onConnect();
 		}
     }
 
@@ -72,7 +73,7 @@ public class DataReceiver implements Runnable
 		    mSocket.close();
 	    } catch (IOException e){
 		    System.err.println("Couldn't get I/O for the connection to server");
-		    System.exit(1);
+		    System.exit(1); // Do we want to exit the whole program on disconnect, or go back to main menu?
 	    }
     }
     

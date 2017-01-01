@@ -25,7 +25,7 @@ public class MainMenu extends JPanel implements ActionListener
 		mConnectButton = new JButton("Connect");
 		mConnectButton.setActionCommand("MM_CONNECT_BUTTON");
 		mConnectButton.addActionListener(this);
-		mConnectButton.setBounds(100, 150, 100, 30);
+		mConnectButton.setBounds(75, 150, 150, 30);
 		mConnectButton.setVisible(true);
 		this.add(mConnectButton);
 
@@ -33,7 +33,7 @@ public class MainMenu extends JPanel implements ActionListener
 		mOptionsButton = new JButton("Options");
 		mOptionsButton.setActionCommand("MM_OPTIONS_BUTTON");
 		mOptionsButton.addActionListener(this);
-		mOptionsButton.setBounds(100, 250, 100, 30);
+		mOptionsButton.setBounds(75, 250, 150, 30);
 		mOptionsButton.setVisible(true);
 		this.add(mOptionsButton);
 
@@ -41,7 +41,7 @@ public class MainMenu extends JPanel implements ActionListener
 		mExitButton = new JButton("Exit");
 		mExitButton.setActionCommand("MM_EXIT_BUTTON");
 		mOptionsButton.addActionListener(this);
-		mExitButton.setBounds(100, 350, 100, 30);
+		mExitButton.setBounds(75, 350, 150, 30);
 		mExitButton.setVisible(true);
 		this.add(mExitButton);
 
@@ -49,9 +49,9 @@ public class MainMenu extends JPanel implements ActionListener
 	}
 
 	@Override
-	public void paint(Graphics graphics)
+	public void paintComponent(Graphics graphics)
 	{
-		super.paint(graphics);
+		super.paintComponent(graphics);
 
 		graphics.setColor(new Color(0x3589c5));
 		Font font = new Font(null, Font.PLAIN, 30);

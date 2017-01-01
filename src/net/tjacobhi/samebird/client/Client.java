@@ -47,7 +47,16 @@ public class Client
 			case "MM_CONNECT_BUTTON":
 				mDataReceiver.start();
 				break;
+			case "CS_DISCONNECT_BUTTON":
+				//
+				break;
 		}
+	}
+
+	public static void onConnect()
+	{
+		mCurrentState = ClientState.CONNECTED_SCREEN;
+		SINGLETON.mWindow.switchScreen();
 	}
 
 	public static ClientState getCurrentState()

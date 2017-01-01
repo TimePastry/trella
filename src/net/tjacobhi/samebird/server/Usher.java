@@ -44,7 +44,7 @@ public class Usher implements Runnable{
 				} catch (SocketTimeoutException e)
 				{
 					mServerCapacity.release();
-					wait(5000);
+					wait(5000); // todo: Keep getting an IllegalMonitorStateException thrown here, find out why
 				}
 			}
 		}
