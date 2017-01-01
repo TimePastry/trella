@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class Client
 {
-    TestWindow mWindow; // I'm creating its window as a member variable.
+    ClientWindowManager mWindow; // I'm creating its window as a member variable.
 	private static DataReceiver mDataReceiver;
 	private static ClientState mCurrentState;
 
@@ -20,7 +20,7 @@ public class Client
 
     public Client()
     {
-        mWindow = new TestWindow();
+        mWindow = new ClientWindowManager();
     }
 
     /**
@@ -34,7 +34,7 @@ public class Client
         SINGLETON.mWindow.createWindow();
         
         Client.mDataReceiver = new DataReceiver();
-        Client.mDataReceiver.start();
+        //Client.mDataReceiver.start();
     }
 
 	public static void windowEvent(ActionEvent e)
@@ -44,7 +44,9 @@ public class Client
 			case "GAME_START":
 				mDataReceiver.startGame();
 				break;
-
+			case "MM_CONNECT_BUTTON":
+				mDataReceiver.start();
+				break;
 		}
 	}
 
