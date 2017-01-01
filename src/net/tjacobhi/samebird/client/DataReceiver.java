@@ -29,9 +29,7 @@ public class DataReceiver implements Runnable
 		boolean connected = connect();
 		if(connected)
 		{
-			// todo: switch client's state to connected, and then switch screens
-			// also, we need to keep track to see if we disconnect at any time,
-			// if we do, we need to force the Client back to the main menu.
+			System.out.println("Connected to server");
 			Client.onConnect();
 		}
     }

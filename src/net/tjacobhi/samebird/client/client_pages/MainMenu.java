@@ -40,7 +40,7 @@ public class MainMenu extends JPanel implements ActionListener
 		//Create Exit Button
 		mExitButton = new JButton("Exit");
 		mExitButton.setActionCommand("MM_EXIT_BUTTON");
-		mOptionsButton.addActionListener(this);
+		mExitButton.addActionListener(this);
 		mExitButton.setBounds(75, 350, 150, 30);
 		mExitButton.setVisible(true);
 		this.add(mExitButton);
@@ -68,11 +68,14 @@ public class MainMenu extends JPanel implements ActionListener
 		switch (e.getActionCommand())
 		{
 			case "MM_CONNECT_BUTTON":
+				System.out.println("Connect Button Pressed");
 				Client.windowEvent(e);
 				break;
 			case "MM_OPTIONS_BUTTON":
 				break;
 			case "MM_EXIT_BUTTON":
+				System.out.println("Exited from Main Menu Exit Button");
+				System.exit(0);
 				break;
 			default:
 				// do nothing
