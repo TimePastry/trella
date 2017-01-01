@@ -78,6 +78,11 @@ public class ClientWindowManager implements ActionListener
 		}
 	}
 
+	public void onFailedConnect()
+	{
+		mMainMenu.onFailedConnect();
+	}
+
 	/**
 	 * This will create the window in the proper procedure
 	 */

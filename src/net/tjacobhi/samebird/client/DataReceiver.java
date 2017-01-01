@@ -32,6 +32,11 @@ public class DataReceiver implements Runnable
 			System.out.println("Connected to server");
 			Client.onConnect();
 		}
+		else
+		{
+			System.out.println("Could not connect to server");
+			Client.onFailedConnect();
+		}
     }
 
     public boolean connect()
@@ -53,11 +58,11 @@ public class DataReceiver implements Runnable
 	    }
 	    catch (UnknownHostException e) {
 		    System.err.println("Don't know about host ");
-		    System.exit(1);
+		    //System.exit(1);
 	    }
 	    catch (IOException e) {
 		    System.err.println("Couldn't get I/O for the connection to ");
-		    System.exit(1);
+		    //System.exit(1);
 	    }
 	    
 	    return false;

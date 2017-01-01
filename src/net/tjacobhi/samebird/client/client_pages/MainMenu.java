@@ -62,6 +62,11 @@ public class MainMenu extends JPanel implements ActionListener
 		graphics.fillRoundRect(300, 100, 400, 400, 20, 20);
 	}
 
+	public void onFailedConnect()
+	{
+		mConnectButton.setEnabled(true);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -69,6 +74,7 @@ public class MainMenu extends JPanel implements ActionListener
 		{
 			case "MM_CONNECT_BUTTON":
 				System.out.println("Connect Button Pressed");
+				mConnectButton.setEnabled(false);
 				Client.windowEvent(e);
 				break;
 			case "MM_OPTIONS_BUTTON":
