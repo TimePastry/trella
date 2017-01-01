@@ -1,6 +1,5 @@
 package net.tjacobhi.samebird.client;
 
-import net.tjacobhi.samebird.TestWindow;
 import net.tjacobhi.samebird.client.client_pages.ConnectedScreen;
 import net.tjacobhi.samebird.client.client_pages.MainMenu;
 

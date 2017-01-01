@@ -1,7 +1,5 @@
 package net.tjacobhi.samebird.client;
 
-import net.tjacobhi.samebird.TestWindow;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
