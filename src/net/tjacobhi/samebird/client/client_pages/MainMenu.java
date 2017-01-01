@@ -57,6 +57,9 @@ public class MainMenu extends JPanel implements ActionListener
 		Font font = new Font(null, Font.PLAIN, 30);
 		graphics.setFont(font);
 		graphics.drawString("Same-bird Main Menu", 30, 60);
+
+		graphics.setColor(new Color(0x993333));
+		graphics.fillRoundRect(300, 100, 400, 400, 20, 20);
 	}
 
 	@Override

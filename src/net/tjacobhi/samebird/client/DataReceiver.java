@@ -26,14 +26,20 @@ public class DataReceiver implements Runnable
     @Override
     public void run()
     {
-		connect();
+		boolean connected = connect();
+		if(connected)
+		{
+			// todo: switch client's state to connected, and then switch screens
+			// also, we need to keep track to see if we disconnect at any time,
+			// if we do, we need to force the Client back to the main menu.
+		}
     }
 
     public boolean connect()
     {
 	    try {
 		    mSocket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
-		    //mSocket.setSoTimeout(10500);
+		    mSocket.setSoTimeout(10500);
 			mOut = new PrintWriter(mSocket.getOutputStream(), true);
 			mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
 		    mOut.println(Utilities.PLAYER_CONNECTED);

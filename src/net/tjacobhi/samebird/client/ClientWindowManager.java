@@ -29,6 +29,7 @@ public class ClientWindowManager implements ActionListener
 
 		mFrame.setMinimumSize(new Dimension(800, 600));
 		mFrame.setSize(800, 600);
+		mFrame.setLocation(50, 50);
 		mFrame.setResizable(false);
 
 		// Start by creating a MainMenu object and assigning it to mFrame.
