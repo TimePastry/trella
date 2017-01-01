@@ -44,7 +44,9 @@ public class Usher implements Runnable{
 				} catch (SocketTimeoutException e)
 				{
 					mServerCapacity.release();
-					wait(5000); // todo: Keep getting an IllegalMonitorStateException thrown here, find out why
+					//wait(5000); // Keep getting an IllegalMonitorStateException thrown here, find out why
+					Thread.sleep(5000); // Does this fix the above exception? Yep, it fixed it.
+					//What is the difference between wait and sleep? Is there a specific reason wait needs to be used?
 				}
 			}
 		}
