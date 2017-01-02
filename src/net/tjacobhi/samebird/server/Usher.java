@@ -24,7 +24,7 @@ public class Usher implements Runnable{
 	}
 	
 	// set server size
-	private final int SIZE = 1;
+	private final int SIZE = 2;
 	
 	Usher(Server server){
 		mServerCapacity = new Semaphore(SIZE);
