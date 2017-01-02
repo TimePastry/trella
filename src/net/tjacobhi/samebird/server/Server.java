@@ -111,7 +111,7 @@ public class Server implements Runnable{
 				mClientOuts.remove(user);
 				mClientIns.remove(user);
 				mClients.remove(user);
-				
+				break;
 			default:
 				System.out.println("Unrecognized command from client");
 		}
