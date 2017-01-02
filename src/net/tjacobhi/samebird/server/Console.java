@@ -15,7 +15,7 @@ public class Console implements Runnable {
 	private Semaphore mGameStarted;
     
     // command strings
-	static final String GAME_START = "start";
+	private static final String GAME_START = "start";
     
     Thread getThread() {
         return mThread;
@@ -45,7 +45,7 @@ public class Console implements Runnable {
         }
     }
     
-    void executeCommand(String command){
+    private void executeCommand(String command){
     	if (GAME_START.equals(command)){
     		mGameStarted.release();
 	    }

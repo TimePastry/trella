@@ -24,16 +24,16 @@ public class Server implements Runnable{
 	private ArrayList<PrintWriter> mClientOuts;
 	private ArrayList<BufferedReader> mClientIns;
 	
-	public ArrayList<PrintWriter> getClientOuts() {
+	ArrayList<PrintWriter> getClientOuts() {
 		return mClientOuts;
 	}
 	
-	public ArrayList<BufferedReader> getClientIns() {
+	ArrayList<BufferedReader> getClientIns() {
 	
 		return mClientIns;
 	}
 	
-	public ServerSocket getServerSocket() {
+	ServerSocket getServerSocket() {
 		return mServerSocket;
 	}
 	
@@ -53,7 +53,7 @@ public class Server implements Runnable{
 		usher.start();
 	}
 	
-	public ArrayList<Socket> getClients() {
+	ArrayList<Socket> getClients() {
 		return mClients;
 	}
 	

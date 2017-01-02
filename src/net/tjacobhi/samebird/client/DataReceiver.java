@@ -12,6 +12,8 @@ import java.net.UnknownHostException;
 
 /**
  * Created by tjacobhi on 30-Dec-16.
+ *
+ * connects to the server and provides communication for the client
  */
 public class DataReceiver implements Runnable
 {
@@ -40,7 +42,7 @@ public class DataReceiver implements Runnable
 		}
     }
 
-    public boolean connect()
+    private boolean connect()
     {
 	    try {
 		    mSocket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
@@ -58,11 +60,11 @@ public class DataReceiver implements Runnable
 		    }
 	    }
 	    catch (UnknownHostException e) {
-		    System.err.println("Don't know about host ");
+		    System.err.println("Don't know about host");
 		    //System.exit(1);
 	    }
 	    catch (IOException e) {
-		    System.err.println("Couldn't get I/O for the connection to ");
+		    System.err.println("Couldn't get I/O for the connection");
 		    //System.exit(1);
 	    }
 	    
@@ -79,7 +81,6 @@ public class DataReceiver implements Runnable
 	    } catch (IOException e){
 		    System.err.println("Couldn't get I/O for the connection to server");
 		    //System.exit(1); // Do we want to exit the whole program on disconnect, or go back to main menu?
-		    // main menu. The user can then either reconnect or exit using the exit button
 	    }
 	    Client.onDisconnect(); // This will allow the client to update everything else after disconnect has taken place
     }
