@@ -1,5 +1,7 @@
 package net.tjacobhi.samebird.client;
 
+import net.tjacobhi.samebird.utilities.Utilities;
+
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
@@ -45,14 +47,14 @@ public class Client
 		switch (e.getActionCommand())
 		{
 			case "MM_CONNECT_BUTTON":
-				mDataReceiver.start();
+				mDataReceiver.sendCommand(Utilities.PLAYER_CONNECTED);
 				break;
 			case "CS_LOGIN_BUTTON":
 				mCurrentState = ClientState.LOGIN_SCREEN;
 				SINGLETON.mWindow.switchScreen();
 				break;
 			case "CS_DISCONNECT_BUTTON":
-				mDataReceiver.disconnect();
+				mDataReceiver.sendCommand(Utilities.PLAYER_DISCONNECTED);
 				break;
 			case "LS_BACK_BUTTON":
 				mCurrentState = ClientState.CONNECTED_SCREEN;

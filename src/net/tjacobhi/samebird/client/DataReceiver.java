@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by tjacobhi on 30-Dec-16.
@@ -23,23 +24,44 @@ public class DataReceiver implements Runnable
     private Socket mSocket;
 	private PrintWriter mOut;
 	private BufferedReader mIn;
-
+	private Semaphore mCommandReady;
+	private Semaphore mCommandMutex;
+	private int mCommand;
+	
 
     @Override
     public void run()
     {
-		boolean connected = connect();
-		if(connected)
-		{
-			System.out.println("Connected to server");
-			Client.onConnect(); // This will allow the client to handle what to do after connection has taken place
-		}
-		else
-		{
-			System.out.println("Could not connect to server");
-			Client.onFailedConnect();
-			return; // we exit the thread
-		}
+    	while(true){
+    		try{
+    			mCommandReady.acquire();
+    			mCommandMutex.acquire();
+    			if ((mCommand & Utilities.PLAYER_CONNECTED) == Utilities.PLAYER_CONNECTED){
+    				connect();
+			    }
+			    if ((mCommand & Utilities.PLAYER_DISCONNECTED) == Utilities.PLAYER_DISCONNECTED){
+    				disconnect();
+			    }
+    			mCommandReady.release();
+    			mCommandMutex.release();
+		    }
+		    catch (InterruptedException e){
+    			e.printStackTrace();
+		    }
+	    }
+		
+    }
+    
+    public void sendCommand(int command){
+    	try {
+		    mCommandMutex.acquire();
+		    mCommand |= command;
+		    mCommandReady.release();
+		    mCommandMutex.release();
+	    }
+	    catch(InterruptedException e){
+    		e.printStackTrace();
+	    }
     }
 
     boolean connect()
@@ -52,6 +74,8 @@ public class DataReceiver implements Runnable
 		    mOut.println(Utilities.PLAYER_CONNECTED);
 		    try {
 			    if (Integer.parseInt(mIn.readLine()) == Utilities.ACCEPT_PLAYER_CONNECTED) {
+				    System.out.println("Connected to server");
+				    Client.onConnect();
 				    return true;
 			    }
 		    }
@@ -67,7 +91,9 @@ public class DataReceiver implements Runnable
 		    System.err.println("Couldn't get I/O for the connection");
 		    //System.exit(1);
 	    }
-	    
+	
+	    System.out.println("Could not connect to server");
+	    Client.onFailedConnect();
 	    return false;
     }
 	
@@ -105,6 +131,17 @@ public class DataReceiver implements Runnable
     }
 	
 	void start(){
+    	mCommandReady = new Semaphore(1);
+    	// set initial semaphore state to 0
+    	try {
+	    	mCommandReady.acquire();
+	    }
+	    catch (InterruptedException e){
+    		e.printStackTrace();
+		}
+		mCommandMutex = new Semaphore(1);
+		
+		mCommand = 0;
 		if (mThread == null){
 			mThread = new Thread(this, "Game Updater");
 			mThread.start();
