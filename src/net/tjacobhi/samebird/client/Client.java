@@ -19,6 +19,7 @@ public class Client
     public Client()
     {
         mWindow = new ClientWindowManager();
+	    mDataReceiver.start();
     }
 
     /**
@@ -45,7 +46,7 @@ public class Client
 		switch (e.getActionCommand())
 		{
 			case "MM_CONNECT_BUTTON":
-				mDataReceiver.start();
+				mDataReceiver.connect();
 				break;
 			case "CS_LOGIN_BUTTON":
 				mCurrentState = ClientState.LOGIN_SCREEN;
