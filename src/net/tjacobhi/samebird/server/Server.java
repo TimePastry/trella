@@ -23,6 +23,7 @@ public class Server implements Runnable{
 	private ArrayList<Socket> mClients;
 	private ArrayList<PrintWriter> mClientOuts;
 	private ArrayList<BufferedReader> mClientIns;
+	private Usher mUsher;
 	
 	ArrayList<PrintWriter> getClientOuts() {
 		return mClientOuts;
@@ -39,7 +40,7 @@ public class Server implements Runnable{
 	
 	Server(Semaphore gameStarted){
 		mGameStarted = gameStarted;
-		Usher usher = new Usher(this);
+		mUsher = new Usher(this);
 		if (mServerSocket == null) {
 			try {
 				mServerSocket = new ServerSocket(Utilities.PORT);
@@ -50,7 +51,7 @@ public class Server implements Runnable{
 		mClients = new ArrayList<>();
 		mClientIns = new ArrayList<>();
 		mClientOuts = new ArrayList<>();
-		usher.start();
+		mUsher.start();
 	}
 	
 	ArrayList<Socket> getClients() {
@@ -111,6 +112,7 @@ public class Server implements Runnable{
 				mClientOuts.remove(user);
 				mClientIns.remove(user);
 				mClients.remove(user);
+				mUsher.getServerCapacity().release();
 				break;
 			default:
 				System.out.println("Unrecognized command from client");
