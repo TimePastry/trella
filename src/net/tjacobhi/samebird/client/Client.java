@@ -35,13 +35,15 @@ public class Client
         //Client.mDataReceiver.start();
     }
 
+	/**
+	 * Forward events from any screen to this method to have the client handle the necessary actions
+	 * @param e The event that needs to be handled. Use the format AA_NAME, where AA is the abbriviation of which screen
+	 *          this came from.
+	 */
 	public static void windowEvent(ActionEvent e)
 	{
 		switch (e.getActionCommand())
 		{
-			case "GAME_START":
-				mDataReceiver.startGame();
-				break;
 			case "MM_CONNECT_BUTTON":
 				mDataReceiver.start();
 				break;
