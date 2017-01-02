@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -74,7 +75,22 @@ public class DataReceiver implements Runnable
     public void disconnect()
     {
     	try {
-    		// todo send a disconnect flag to the server and wait for a response before closing the socket
+		    mOut.println(Utilities.PLAYER_DISCONNECTED);
+		    int messageFromServer = 0;
+		    try
+		    {
+			    while (messageFromServer != Utilities.ACCEPT_PLAYER_DISCONNECTED)
+			    {
+				    messageFromServer = Integer.parseInt(mIn.readLine());
+				    // Probably should handle parseInt's exception
+				    System.out.println("Successful disconnect");
+			    }
+		    }
+		    catch (SocketTimeoutException e)
+		    {
+		    	e.printStackTrace();
+		    }
+
     		mIn.close();
     		mOut.close();
 		    mSocket.close();
