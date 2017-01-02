@@ -47,6 +47,7 @@ public class Usher implements Runnable{
 					//wait(5000); // Keep getting an IllegalMonitorStateException thrown here, find out why
 					Thread.sleep(5000); // Does this fix the above exception? Yep, it fixed it.
 					//What is the difference between wait and sleep? Is there a specific reason wait needs to be used?
+					// just looked it up on stack overflow, looks like sleep is the better function to call anyways
 				}
 			}
 		}
