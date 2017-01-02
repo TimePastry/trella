@@ -30,12 +30,13 @@ public class DataReceiver implements Runnable
 		if(connected)
 		{
 			System.out.println("Connected to server");
-			Client.onConnect();
+			Client.onConnect(); // This will allow the client to handle what to do after connection has taken place
 		}
 		else
 		{
 			System.out.println("Could not connect to server");
 			Client.onFailedConnect();
+			return; // we exit the thread
 		}
     }
 
@@ -76,8 +77,9 @@ public class DataReceiver implements Runnable
 		    mSocket.close();
 	    } catch (IOException e){
 		    System.err.println("Couldn't get I/O for the connection to server");
-		    System.exit(1); // Do we want to exit the whole program on disconnect, or go back to main menu?
+		    //System.exit(1); // Do we want to exit the whole program on disconnect, or go back to main menu?
 	    }
+	    Client.onDisconnect(); // This will allow the client to update everything else after disconnect has taken place
     }
     
     public void startGame(){

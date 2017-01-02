@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 /**
  * Created by tjacobhi on 31-Dec-16.
  */
-public class MainMenu extends JPanel implements ActionListener
+public class MainMenu extends JPanel implements ActionListener,
+                                                Reloadable
 {
 	private JButton mConnectButton;
 	private JButton mOptionsButton;
@@ -86,5 +87,14 @@ public class MainMenu extends JPanel implements ActionListener
 			default:
 				// do nothing
 		}
+	}
+
+	@Override
+	public void reload()
+	{
+		mConnectButton.setEnabled(true);
+		mOptionsButton.setEnabled(true);
+		mExitButton.setEnabled(true);
+		repaint();
 	}
 }

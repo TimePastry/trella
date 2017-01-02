@@ -46,6 +46,7 @@ public class Client
 				mDataReceiver.start();
 				break;
 			case "CS_DISCONNECT_BUTTON":
+				mDataReceiver.disconnect();
 				break;
 		}
 	}
@@ -59,6 +60,12 @@ public class Client
 	public static void onFailedConnect()
 	{
 		SINGLETON.mWindow.onFailedConnect();
+	}
+
+	public static void onDisconnect()
+	{
+		mCurrentState = ClientState.MAIN_MENU;
+		SINGLETON.mWindow.switchScreen();
 	}
 
 	public static ClientState getCurrentState()

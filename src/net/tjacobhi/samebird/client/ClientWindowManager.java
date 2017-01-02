@@ -61,10 +61,12 @@ public class ClientWindowManager implements ActionListener
 		switch (Client.getCurrentState())
 		{
 			case MAIN_MENU:
-				((CardLayout)mContentPane.getLayout()).show(mMainMenu, "MainMenu");
+				((CardLayout)mContentPane.getLayout()).show(mContentPane, "MainMenu");
+				mMainMenu.reload();
 				break;
 			case CONNECTED_SCREEN:
 				((CardLayout)mContentPane.getLayout()).show(mContentPane, "ConnectedScreen");
+				mConnectedScreen.reload();
 				break;
 			case LOGIN_SCREEN:
 				// todo: implement switching to the login screen

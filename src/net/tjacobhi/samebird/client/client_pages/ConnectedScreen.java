@@ -1,5 +1,7 @@
 package net.tjacobhi.samebird.client.client_pages;
 
+import net.tjacobhi.samebird.client.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +13,8 @@ import java.awt.event.ActionListener;
  * After connecting to the server, This screen will be responsible for giving options of actions to interact with the
  * server.
  */
-public class ConnectedScreen extends JPanel implements ActionListener
+public class ConnectedScreen extends JPanel implements ActionListener,
+                                                       Reloadable
 {
 	private JButton mLoginButton;
 	private JButton mCreateUserButton;
@@ -63,6 +66,19 @@ public class ConnectedScreen extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		switch (e.getActionCommand())
+		{
+			case "CS_DISCONNECT_BUTTON":
+				Client.windowEvent(e);
+				break;
+		}
+	}
 
+	@Override
+	public void reload()
+	{
+		mLoginButton.setEnabled(true);
+		mCreateUserButton.setEnabled(true);
+		mDisconnectButton.setEnabled(true);
 	}
 }
