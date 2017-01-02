@@ -19,6 +19,9 @@ public class Usher implements Runnable{
 	private Thread mThread;
 	private Server mServer;
 	
+	public Semaphore getServerCapacity() {
+		return mServerCapacity;
+	}
 	
 	// set server size
 	private final int SIZE = 1;
