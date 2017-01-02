@@ -72,12 +72,14 @@ public class DataReceiver implements Runnable
     public void disconnect()
     {
     	try {
+    		// todo send a disconnect flag to the server and wait for a response before closing the socket
     		mIn.close();
     		mOut.close();
 		    mSocket.close();
 	    } catch (IOException e){
 		    System.err.println("Couldn't get I/O for the connection to server");
 		    //System.exit(1); // Do we want to exit the whole program on disconnect, or go back to main menu?
+		    // main menu. The user can then either reconnect or exit using the exit button
 	    }
 	    Client.onDisconnect(); // This will allow the client to update everything else after disconnect has taken place
     }

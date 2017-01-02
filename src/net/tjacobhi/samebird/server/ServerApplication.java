@@ -29,7 +29,7 @@ public class ServerApplication {
 	        mGameStarted.acquire();
         }
         catch (InterruptedException e) {
-        	System.err.println("The semaphore explodied");
+        	System.err.println("Error with initializing GameStarted semaphore");
         }
         
         Server server = new Server(mGameStarted);

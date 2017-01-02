@@ -97,6 +97,21 @@ public class Server implements Runnable{
 				mClientOuts.get(user).println(Utilities.ACCEPT_PLAYER_CONNECTED);
 				System.out.println("Player connected");
 				break;
+			case Utilities.PLAYER_DISCONNECTED:
+				// I hope this works, might be some issues with closing the stream
+				mClientOuts.get(user).println(Utilities.ACCEPT_PLAYER_DISCONNECTED);
+				try {
+					mClientOuts.get(user).close();
+					mClientIns.get(user).close();
+					mClients.get(user).close();
+				}
+				catch (IOException e){
+					System.out.println("Error disconnecting user");
+				}
+				mClientOuts.remove(user);
+				mClientIns.remove(user);
+				mClients.remove(user);
+				
 			default:
 				System.out.println("Unrecognized command from client");
 		}
