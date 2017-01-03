@@ -113,6 +113,7 @@ public class Server implements Runnable{
 				mClientIns.remove(user);
 				mClients.remove(user);
 				mUsher.getServerCapacity().release();
+				System.out.println("Player disconnected");
 				break;
 			default:
 				System.out.println("Unrecognized command from client");
