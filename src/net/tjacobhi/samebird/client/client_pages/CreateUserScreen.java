@@ -68,7 +68,7 @@ public class CreateUserScreen extends JPanel implements Reloadable,
 		graphics.setFont(font);
 		graphics.drawString("Same-bird Login", 30, 60);
 
-		graphics.setColor(new Color(0xbb9922));
+		graphics.setColor(new Color(0xb729a5));
 		graphics.fillRoundRect(300, 100, 400, 400, 20, 20);
 	}
 
