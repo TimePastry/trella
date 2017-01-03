@@ -34,7 +34,7 @@ public class Client
         SINGLETON.mWindow.createWindow();
         
         Client.mDataReceiver = new DataReceiver();
-        //Client.mDataReceiver.start();
+        Client.mDataReceiver.start();
     }
 
 	/**
