@@ -53,10 +53,15 @@ public class Client
 				mCurrentState = ClientState.LOGIN_SCREEN;
 				SINGLETON.mWindow.switchScreen();
 				break;
+			case "CS_CREATEUSER_BUTTON":
+				mCurrentState = ClientState.CREATE_USER;
+				SINGLETON.mWindow.switchScreen();
+				break;
 			case "CS_DISCONNECT_BUTTON":
 				mDataReceiver.sendCommand(Utilities.PLAYER_DISCONNECTED);
 				break;
 			case "LS_BACK_BUTTON":
+			case "CU_BACK_BUTTON":
 				mCurrentState = ClientState.CONNECTED_SCREEN;
 				SINGLETON.mWindow.switchScreen();
 				break;

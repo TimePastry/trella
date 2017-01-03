@@ -35,6 +35,7 @@ public class CreateUserScreen extends JPanel implements Reloadable,
 
 		mConfirmPasswordFeild = new JPasswordField(32);
 		mConfirmPasswordFeild.setBounds(75, 360, 150, 30);
+		add(mConfirmPasswordFeild);
 
 		mCreateUserButton = new JButton("Sign In");
 		mCreateUserButton.setBounds(75, 460, 150, 30);
@@ -43,8 +44,8 @@ public class CreateUserScreen extends JPanel implements Reloadable,
 		add(mCreateUserButton);
 
 		mBackButton = new JButton("Back");
-		mBackButton.setBounds(75, 560, 150, 30);
-		mBackButton.setActionCommand("LS_BACK_BUTTON");
+		mBackButton.setBounds(75, 520, 150, 30);
+		mBackButton.setActionCommand("CU_BACK_BUTTON");
 		mBackButton.addActionListener(this);
 		add(mBackButton);
 
@@ -82,7 +83,7 @@ public class CreateUserScreen extends JPanel implements Reloadable,
 	{
 		switch (e.getActionCommand())
 		{
-			case "LS_BACK_BUTTON":
+			case "CU_BACK_BUTTON":
 				Client.windowEvent(e);
 				break;
 		}
