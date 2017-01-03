@@ -32,6 +32,7 @@ public class Utilities
 	public static final int ACCEPT_PLAYER_DISCONNECTED = PLAYER_DISCONNECTED << 16;
 
 	//Is alive is seperate because it gets the final bit available
-	public static final int IS_ALIVE = 0x00001000;
-	public static final int ACCEPT_IS_ALIVE = IS_ALIVE << 16;
+	public static final int ACCEPT_IS_ALIVE = 0x00001000;
+	public static final int IS_ALIVE = ACCEPT_IS_ALIVE << 16;
+	public static final int SERVER_FULL = 0x80000000;
 }
