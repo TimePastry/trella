@@ -16,6 +16,7 @@ public class Console implements Runnable {
     
     // command strings
 	private static final String GAME_START = "start";
+	private static final String NUM_PLAYERS = "nplayers";
     
     Thread getThread() {
         return mThread;
@@ -46,11 +47,20 @@ public class Console implements Runnable {
     }
     
     private void executeCommand(String command){
-    	if (GAME_START.equals(command)){
-    		mGameStarted.release();
-	    }
-	    else {
-        System.out.println("Unknown command");
+    	switch (command){
+    		case GAME_START:
+    			mGameStarted.release();
+    			break;
+		    case NUM_PLAYERS:
+		    	System.out.print("The current number of connected users is ");
+		    	if (Usher.getServerCapacity() != null){
+		    		System.out.println(Usher.SIZE - Usher.getServerCapacity().availablePermits());
+			    } else {
+		    		System.out.println(0);
+			    }
+			    break;
+		    default:
+		    	System.out.println("Unknown command");
 	    }
     }
 }

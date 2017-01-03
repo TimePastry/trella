@@ -15,16 +15,16 @@ import java.util.concurrent.Semaphore;
  * manages new connections made to the server
  */
 public class Usher implements Runnable{
-	private Semaphore mServerCapacity;
+	private static Semaphore mServerCapacity;
 	private Thread mThread;
-	private Server mServer;
+	private static Server mServer;
 	
-	public Semaphore getServerCapacity() {
+	public static Semaphore getServerCapacity() {
 		return mServerCapacity;
 	}
 	
 	// set server size
-	private final int SIZE = 2;
+	static final int SIZE = 2;
 	
 	Usher(Server server){
 		mServerCapacity = new Semaphore(SIZE);
