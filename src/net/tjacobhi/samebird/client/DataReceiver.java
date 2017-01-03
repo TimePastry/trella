@@ -38,9 +38,11 @@ public class DataReceiver implements Runnable
     			mCommandMutex.acquire();
     			if ((mCommand & Utilities.PLAYER_CONNECTED) == Utilities.PLAYER_CONNECTED){
     				connect();
+    				mCommand ^= Utilities.PLAYER_CONNECTED;
 			    }
 			    if ((mCommand & Utilities.PLAYER_DISCONNECTED) == Utilities.PLAYER_DISCONNECTED){
     				disconnect();
+    				mCommand ^= Utilities.PLAYER_DISCONNECTED;
 			    }
     			mCommandReady.release();
     			mCommandMutex.release();
