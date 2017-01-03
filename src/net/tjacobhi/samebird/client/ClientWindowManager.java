@@ -1,6 +1,7 @@
 package net.tjacobhi.samebird.client;
 
 import net.tjacobhi.samebird.client.client_pages.ConnectedScreen;
+import net.tjacobhi.samebird.client.client_pages.CreateUserScreen;
 import net.tjacobhi.samebird.client.client_pages.LoginScreen;
 import net.tjacobhi.samebird.client.client_pages.MainMenu;
 
@@ -22,6 +23,7 @@ public class ClientWindowManager implements ActionListener
 	private MainMenu mMainMenu;
 	private ConnectedScreen mConnectedScreen;
 	private LoginScreen mLoginScreen;
+	private CreateUserScreen mCreateUserScreen;
 
 	/**
 	 * Creates the initial window
@@ -37,9 +39,12 @@ public class ClientWindowManager implements ActionListener
 		mMainMenu = new MainMenu();
 		mConnectedScreen = new ConnectedScreen();
 		mLoginScreen = new LoginScreen();
+		mCreateUserScreen = new CreateUserScreen();
 		mContentPane.add(mMainMenu, "MainMenu");
 		mContentPane.add(mConnectedScreen, "ConnectedScreen");
 		mContentPane.add(mLoginScreen, "LoginScreen");
+		mContentPane.add(mCreateUserScreen, "CreateUserScreen");
+
 		mFrame.setMinimumSize(new Dimension(800, 600));
 		mFrame.setSize(800, 600);
 		mFrame.setLocation(50, 50);
@@ -77,7 +82,7 @@ public class ClientWindowManager implements ActionListener
 				mLoginScreen.reload();
 				break;
 			case CREATE_USER:
-				// todo: implement switching to the create user screen
+				((CardLayout)mContentPane.getLayout()).show(mContentPane, "CreateUserScreen");
 				break;
 			case OPTIONS_SCREEN:
 				// todo: implement switching to the options screen
