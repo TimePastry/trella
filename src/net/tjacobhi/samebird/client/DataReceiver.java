@@ -70,7 +70,7 @@ public class DataReceiver implements Runnable
     {
 	    try {
 		    mSocket = new Socket(Utilities.HOSTNAME, Utilities.PORT);
-		    mSocket.setSoTimeout(10500);
+		    mSocket.setSoTimeout(500); // changed to half a second
 			mOut = new PrintWriter(mSocket.getOutputStream(), true);
 			mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
 		    mOut.println(Utilities.PLAYER_CONNECTED);
