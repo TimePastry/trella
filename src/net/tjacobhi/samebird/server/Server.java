@@ -20,10 +20,17 @@ public class Server implements Runnable{
 	private Semaphore mGameStarted;
 	static Semaphore clientSemaphore = new Semaphore(1);
 	private ServerSocket mServerSocket;
-	private ArrayList<Socket> mClients;
+	private static ArrayList<Socket> mClients;
 	private ArrayList<PrintWriter> mClientOuts;
 	private ArrayList<BufferedReader> mClientIns;
 	private Usher mUsher;
+	
+	static int getNumClients(){
+		if (mClients != null){
+			return mClients.size();
+		}
+		return 0;
+	}
 	
 	ArrayList<PrintWriter> getClientOuts() {
 		return mClientOuts;
