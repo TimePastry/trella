@@ -55,16 +55,16 @@ public class Console implements Runnable {
 		    case NUM_PLAYERS:
 		    	System.out.print("The current number of connected users is ");
 		    	if (Usher.getServerCapacity() != null){
-		    		System.out.println(Usher.SIZE - Server.getNumClients());
+		    		System.out.println(Server.getNumClients());
 			    } else {
 		    		System.out.println(0);
 			    }
 			    break;
 		    case HELP:
 		    	// sort these statements alphabetically
-		    	System.out.println("help: you probably already know what this one does");
-		    	System.out.println("nplayers: print the current number of connected players");
-		    	System.out.println("start: start the game");
+		    	System.out.println("help: \tyou probably already know what this one does");
+		    	System.out.println("nplayers: \tprint the current number of connected players");
+		    	System.out.println("start: \tstart the game");
 		    	break;
 		    default:
 		    	System.out.println("Unknown command");

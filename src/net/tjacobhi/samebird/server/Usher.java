@@ -1,6 +1,8 @@
 package net.tjacobhi.samebird.server;
 
 
+import net.tjacobhi.samebird.utilities.Utilities;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,22 +38,21 @@ public class Usher implements Runnable{
 	public void run() {
 		try {
 			while (ServerApplication.running) {
-				mServerCapacity.acquire();
 				mServer.getServerSocket().setSoTimeout(10000);
 				try {
 					Socket socket = mServer.getServerSocket().accept();
-					Server.clientSemaphore.acquire();
-					mServer.getClients().add(socket);
-					mServer.getClientOuts().add(new PrintWriter(socket.getOutputStream(), true));
-					mServer.getClientIns().add(new BufferedReader(new InputStreamReader(socket.getInputStream())));
-					Server.clientSemaphore.release();
-				} catch (SocketTimeoutException e)
-				{
-					mServerCapacity.release();
-					//wait(5000); // Keep getting an IllegalMonitorStateException thrown here, find out why
-					//Thread.sleep(5000); // Does this fix the above exception? Yep, it fixed it.
-					//What is the difference between wait and sleep? Is there a specific reason wait needs to be used?
-					// just looked it up on stack overflow, looks like sleep is the better function to call anyways
+					if (mServerCapacity.tryAcquire()){
+						Server.clientSemaphore.acquire();
+						mServer.getClients().add(socket);
+						mServer.getClientOuts().add(new PrintWriter(socket.getOutputStream(), true));
+						mServer.getClientIns().add(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+						Server.clientSemaphore.release();
+					} else {
+						PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+						pw.println(Utilities.SERVER_FULL);
+					}
+				} catch (SocketTimeoutException ignored){
+					
 				}
 			}
 		}
