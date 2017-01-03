@@ -71,6 +71,9 @@ public class ConnectedScreen extends JPanel implements ActionListener,
 			case "CS_LOGIN_BUTTON":
 				Client.windowEvent(e);
 				break;
+			case "CS_CREATEUSER_BUTTON":
+				Client.windowEvent(e);
+				break;
 			case "CS_DISCONNECT_BUTTON":
 				Client.windowEvent(e);
 				break;
