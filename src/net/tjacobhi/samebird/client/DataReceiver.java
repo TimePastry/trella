@@ -74,11 +74,20 @@ public class DataReceiver implements Runnable
 			mOut = new PrintWriter(mSocket.getOutputStream(), true);
 			mIn = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
 		    mOut.println(Utilities.PLAYER_CONNECTED);
+		    String serverMessage = "";
 		    try {
-			    if (Integer.parseInt(mIn.readLine()) == Utilities.ACCEPT_PLAYER_CONNECTED) {
+		    	serverMessage = mIn.readLine();
+			    if ((Integer.parseInt(serverMessage) & Utilities.ACCEPT_PLAYER_CONNECTED) ==
+			        Utilities.ACCEPT_PLAYER_CONNECTED)
+			    {
 				    System.out.println("Connected to server");
 				    Client.onConnect();
 				    return true;
+			    }
+			    if ((Integer.parseInt(serverMessage) & Utilities.SERVER_FULL) ==
+			        Utilities.SERVER_FULL)
+			    {
+			    	System.out.print("Server is full");
 			    }
 		    }
 		    catch (SocketTimeoutException e){
