@@ -15,12 +15,19 @@ public class Client
     ClientWindowManager mWindow; // I'm creating its window as a member variable.
 	private static DataReceiver mDataReceiver;
 	private static ClientState mCurrentState;
+	private static boolean mConnected;
 
 	public static Client SINGLETON = new Client();
-
-    public Client()
+	
+	public static boolean isConnected() {
+		return mConnected;
+	}
+	
+	public Client()
     {
         mWindow = new ClientWindowManager();
+        mConnected = false;
+        
     }
 
     /**
@@ -71,6 +78,7 @@ public class Client
 	public static void onConnect()
 	{
 		mCurrentState = ClientState.CONNECTED_SCREEN;
+		mConnected = true;
 		SINGLETON.mWindow.switchScreen();
 	}
 
@@ -82,6 +90,7 @@ public class Client
 	public static void onDisconnect()
 	{
 		mCurrentState = ClientState.MAIN_MENU;
+		mConnected = false;
 		SINGLETON.mWindow.switchScreen();
 	}
 
