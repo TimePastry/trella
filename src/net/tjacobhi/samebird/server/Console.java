@@ -57,7 +57,7 @@ public class Console implements Runnable {
     			break;
 		    case NUM_PLAYERS:
 		    	System.out.print("The current number of connected users is ");
-		    	if (Usher.getServerCapacity() != null){
+		    	if (ServerApplication.getServer().getUsher().getServerCapacity() != null){
 		    		System.out.println(Server.getNumClients());
 			    } else {
 		    		System.out.println(0);

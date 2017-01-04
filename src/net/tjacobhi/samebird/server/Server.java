@@ -134,7 +134,7 @@ public class Server implements Runnable{
 					mClientOuts.remove(user);
 					mClientIns.remove(user);
 					mClients.remove(user);
-					Usher.getServerCapacity().release();
+					mUsher.getServerCapacity().release();
 					System.out.println("Player disconnected");
 				}
 				break;
