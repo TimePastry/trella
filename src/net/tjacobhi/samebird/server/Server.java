@@ -76,6 +76,7 @@ public class Server implements Runnable{
 					}
 				}
 				clientSemaphore.release();
+				Thread.sleep(50);
 			}
 		}
 		catch (Exception e){
