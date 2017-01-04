@@ -129,11 +129,14 @@ public class Server implements Runnable{
 				catch (IOException e){
 					System.out.println("Error disconnecting user");
 				}
-				mClientOuts.remove(user);
-				mClientIns.remove(user);
-				mClients.remove(user);
-				Usher.getServerCapacity().release();
-				System.out.println("Player disconnected");
+				finally
+				{
+					mClientOuts.remove(user);
+					mClientIns.remove(user);
+					mClients.remove(user);
+					Usher.getServerCapacity().release();
+					System.out.println("Player disconnected");
+				}
 				break;
 			default:
 				System.out.println("Unrecognized command from client");

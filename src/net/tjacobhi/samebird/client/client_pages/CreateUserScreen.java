@@ -37,7 +37,7 @@ public class CreateUserScreen extends JPanel implements Reloadable,
 		mConfirmPasswordFeild.setBounds(75, 300, 150, 30);
 		add(mConfirmPasswordFeild);
 
-		mCreateUserButton = new JButton("Sign In");
+		mCreateUserButton = new JButton("Create User");
 		mCreateUserButton.setBounds(75, 380, 150, 30);
 		mCreateUserButton.setActionCommand("CU_CREATEUSER_BUTTON");
 		mCreateUserButton.addActionListener(this);
