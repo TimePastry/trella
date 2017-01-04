@@ -90,7 +90,7 @@ public class Server implements Runnable{
 	
 	void start(){
 		if (mThread == null){
-			mThread = new Thread(this, "Console");
+			mThread = new Thread(this, "Server");
 			mThread.start();
 		}
 	}

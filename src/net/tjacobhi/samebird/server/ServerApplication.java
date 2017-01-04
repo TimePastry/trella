@@ -41,9 +41,11 @@ public class ServerApplication {
         Console console = new Console(mGameStarted);
         console.start();
         
+        /*
         while (true){
             if (!gameUpdater.getThread().isAlive()) break;
         }
         console.getThread().interrupt();
+        */
     }
 }
