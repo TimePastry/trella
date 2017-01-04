@@ -19,8 +19,22 @@ public class ServerApplication {
     private static final String mVersionNumber = "0.0.1";
     private static final Semaphore mGameStarted = new Semaphore(1);
     static boolean running = true;
-    
-    //private static GameUpdater mGameUpdater;
+    private static Server sServer;
+	private static Console sConsole;
+	private static GameUpdater sGameUpdater;
+	
+	public static Server getServer() {
+		return sServer;
+	}
+	
+	public static Console getConsole() {
+		return sConsole;
+	}
+	
+	public static GameUpdater getGameUpdater() {
+		return sGameUpdater;
+	}
+	//private static GameUpdater mGameUpdater;
     
     public static void main(String[] args){
         System.out.println("Welcome to the Samebird server program version " + mVersionNumber);
@@ -32,14 +46,14 @@ public class ServerApplication {
         	System.err.println("Error with initializing GameStarted semaphore");
         }
         
-        Server server = new Server(mGameStarted);
-        server.start();
+        sServer = new Server(mGameStarted);
+        sServer.start();
         
-        GameUpdater gameUpdater = new GameUpdater(mGameStarted);
-        gameUpdater.start();
+        sGameUpdater = new GameUpdater(mGameStarted);
+        sGameUpdater.start();
         
-        Console console = new Console(mGameStarted);
-        console.start();
+        sConsole = new Console(mGameStarted);
+        sConsole.start();
         
         /*
         while (true){

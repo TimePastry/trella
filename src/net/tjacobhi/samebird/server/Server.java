@@ -25,11 +25,20 @@ public class Server implements Runnable{
 	private ArrayList<BufferedReader> mClientIns;
 	private Usher mUsher;
 	
+	public Usher getUsher() {
+		return mUsher;
+	}
+	
 	static int getNumClients(){
 		if (mClients != null){
+		
 			return mClients.size();
 		}
 		return 0;
+	}
+	
+	public Thread getThread() {
+		return mThread;
 	}
 	
 	ArrayList<PrintWriter> getClientOuts() {
@@ -78,6 +87,9 @@ public class Server implements Runnable{
 				clientSemaphore.release();
 				Thread.sleep(50);
 			}
+		}
+		catch (InterruptedException e){
+			System.out.println("Server interrupting");
 		}
 		catch (Exception e){
 			System.err.println("Exception in Server");

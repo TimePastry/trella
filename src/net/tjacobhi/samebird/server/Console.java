@@ -18,8 +18,11 @@ public class Console implements Runnable {
 	private static final String GAME_START = "start";
 	private static final String NUM_PLAYERS = "nplayers";
 	private static final String HELP = "help";
-    
-    Thread getThread() {
+	private static final String EXIT = "exit";
+	private static final String QUIT = "quit";
+	
+	
+	Thread getThread() {
         return mThread;
     }
     
@@ -65,6 +68,15 @@ public class Console implements Runnable {
 		    	System.out.println("help: \tyou probably already know what this one does");
 		    	System.out.println("nplayers: \tprint the current number of connected players");
 		    	System.out.println("start: \tstart the game");
+		    	break;
+		    case EXIT:
+		    case QUIT:
+		    	ServerApplication.running = false;
+		    	ServerApplication.getGameUpdater().getThread().interrupt();
+		    	ServerApplication.getServer().getUsher().getThread().interrupt();
+		    	ServerApplication.getServer().getThread().interrupt();
+		    	//mThread.interrupt();
+		    	System.exit(0);
 		    	break;
 		    default:
 		    	System.out.println("Unknown command");

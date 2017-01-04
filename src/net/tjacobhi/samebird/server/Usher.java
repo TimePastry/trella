@@ -21,17 +21,20 @@ public class Usher implements Runnable{
 	private Thread mThread;
 	private static Server mServer;
 	
+	// set server size
 	static final int SIZE = 2;
 	
 	public static Semaphore getServerCapacity() {
 		return mServerCapacity;
 	}
 	
-	// set server size
-	
 	Usher(Server server){
 		mServerCapacity = new Semaphore(SIZE);
 		mServer = server;
+	}
+	
+	public Thread getThread() {
+		return mThread;
 	}
 	
 	@Override
