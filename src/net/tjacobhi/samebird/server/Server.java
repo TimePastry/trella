@@ -20,7 +20,7 @@ public class Server implements Runnable{
 	private Semaphore mGameStarted;
 	static Semaphore clientSemaphore = new Semaphore(1);
 	private ServerSocket mServerSocket;
-	private static ArrayList<Socket> mClients;
+	private ArrayList<Socket> mClients;
 	private ArrayList<PrintWriter> mClientOuts;
 	private ArrayList<BufferedReader> mClientIns;
 	private Usher mUsher;
@@ -29,7 +29,7 @@ public class Server implements Runnable{
 		return mUsher;
 	}
 	
-	static int getNumClients(){
+	int getNumClients(){
 		if (mClients != null){
 		
 			return mClients.size();
@@ -39,6 +39,10 @@ public class Server implements Runnable{
 	
 	public Thread getThread() {
 		return mThread;
+	}
+
+	ArrayList<Socket> getClients() {
+		return mClients;
 	}
 	
 	ArrayList<PrintWriter> getClientOuts() {
@@ -70,9 +74,6 @@ public class Server implements Runnable{
 		mUsher.start();
 	}
 	
-	ArrayList<Socket> getClients() {
-		return mClients;
-	}
 	
 	@Override
 	public void run() {
